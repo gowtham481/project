@@ -1,0 +1,7 @@
+# Ignore installers
+*.exe
+*.msix
+
+# Ignore Python caches
+__pycache__/
+.pytest_cache/
