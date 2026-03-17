@@ -39,3 +39,20 @@ jobs:
 
     - name: Image Push 
       run: docker push ${{ secrets.DOCKER_USERNAME }}/fastapi-app:${{ env.IMAGE_TAG }}
+
+
+  deploy:
+    runs-on: self-hosted
+    needs: build-test
+
+    env:
+      IMAGE_TAG: ${{ github.sha }}
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      KUBECONFIG: C:\Users\nandh\.kube\config
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy 
+        run: kubectl apply -f kubernetes/deployment.yml && kubectl apply -f kubernetes/service.yml
