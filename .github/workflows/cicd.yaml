@@ -30,6 +30,12 @@ jobs:
       # Run tests
     - name: Run tests
       run: pytest
+      
+    - name: Prepare lowercase repo
+      id: repo
+      run: |
+        USERNAME=$(echo "${{ secrets.DOCKER_HUB_USERNAME }}" | tr '[:upper:]' '[:lower:]')
+        echo "repo=$USERNAME/equalexpert" >> $GITHUB_OUTPUT
 
     - name: Build Docker image
       run: docker build -t ${{ steps.repo.outputs.repo }}:${{ env.IMAGE_TAG }} .
