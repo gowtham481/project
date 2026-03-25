@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: fastapi-app
-        image: ${DOCKER_USERNAME}/fastapi-app:${IMAGE_TAG}
+        image: gowtham481/fastapi-app:c4ff515ca8f5670a16a4d8a86618f31ef09b636e
         ports:
         - containerPort: 8080
