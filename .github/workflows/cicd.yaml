@@ -66,8 +66,8 @@ jobs:
       - name: Prepare lowercase repo name
         id: repo
         run: |
-          USERNAME=$(echo "${{ secrets.DOCKER_USERNAME }}" | tr '[:upper:]' '[:lower:]')
-          echo "repo=$USERNAME/equalexpert" >> $GITHUB_OUTPUT
+          $username = "${{ secrets.DOCKER_USERNAME }}".ToLower()
+          echo "repo=$username/equalexpert" >> $env:GITHUB_OUTPUT
 
       - name: Deploy 
         run: kubectl apply -f kubernetes/deployment.yaml && kubectl apply -f kubernetes/service.yaml
